@@ -39,3 +39,22 @@ contract Lock {
         owner.transfer(address(this).balance);
     }
 }
+
+contract Fundamentals {
+    // Represents an Ethereum address
+    address user = 0x54aa977d8aAec77935DC4b31DEE40d47054fEB2a;
+
+    // It's just a string
+    string message = "Hello, Solidity!";
+
+    // Basically is it True or False
+    bool isReady = true;
+
+    // Small number for max supply of NFTs
+    uint8 MAX_SUPPLY = 10;
+
+    // What do you think 1 days is?
+    uint256 public WAIT_TIME = 1 days;
+
+    constructor() {}
+}

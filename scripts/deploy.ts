@@ -10,13 +10,19 @@ async function main() {
   console.log("Account balance: ", (await owner.provider.getBalance(owner)).toString());
 
   const deploy = async () => {
+    // deploy Lock
     const Lock = await ethers.getContractFactory("Lock");
     const lock = await Lock.deploy(JAN_1ST_2030, {
       value: ONE_GWEI,
     });
 
+    // deploy Fundamentals
+    const Fundamentals = await ethers.getContractFactory("Fundamentals");
+    const fundametals = await Fundamentals.deploy();
+
     console.table({
       lock: await lock.getAddress(),
+      fundametals: await fundametals.getAddress(),
     });
   };
 
