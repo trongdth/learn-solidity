@@ -9,24 +9,52 @@ async function main() {
   console.log("Deploying contracts with the account: ", owner.address);
   console.log("Account balance: ", (await owner.provider.getBalance(owner)).toString());
 
-  const deploy = async () => {
+  const deployLock = async () => {
     // deploy Lock
     const Lock = await ethers.getContractFactory("Lock");
     const lock = await Lock.deploy(JAN_1ST_2030, {
       value: ONE_GWEI,
     });
 
+    console.table({
+      lock: await lock.getAddress(),
+    });
+  };
+
+  const deployFundamentals = async () => {
     // deploy Fundamentals
     const Fundamentals = await ethers.getContractFactory("Fundamentals");
     const fundametals = await Fundamentals.deploy();
 
     console.table({
-      lock: await lock.getAddress(),
       fundametals: await fundametals.getAddress(),
     });
   };
 
-  await deploy();
+  const deployCalculator = async () => {
+    // deploy Calculator
+    const Calculator = await ethers.getContractFactory("Calculator");
+    const calculator = await Calculator.deploy();
+
+    console.log({
+      calculator: await calculator.getAddress(),
+    });
+  };
+
+  const deploySimpleStorage = async () => {
+    // deploy simple storage
+    const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
+    const simpleStorage = await SimpleStorage.deploy();
+
+    console.log({
+      simpleStorage: await simpleStorage.getAddress(),
+    });
+  };
+
+  // await deployLock();
+  // await deployFundamentals();
+  // await deployCalculator();
+  await deploySimpleStorage();
 }
 
 main()
