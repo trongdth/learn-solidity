@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.24;
 
+import {Math} from "./library/Math.sol";
+
 contract Calculator {
     uint256 private result = 0;
 
@@ -54,5 +56,17 @@ contract AdvancedCalculator is BasicCalculator {
         } else {
             revert("operation not found");
         }
+    }
+}
+
+contract LibraryCalculator {
+    using Math for uint;
+
+    function add(uint a, uint b) public pure returns (uint) {
+        return a.add(b);
+    }
+
+    function substract(uint a, uint b) public pure returns (uint) {
+        return a.sub(b);
     }
 }

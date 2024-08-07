@@ -41,6 +41,16 @@ async function main() {
     });
   };
 
+  const deployLibraryCalculator = async () => {
+    // deploy Libray Calculator
+    const LibraryCalculator = await ethers.getContractFactory("LibraryCalculator");
+    const libraryCalculator = await LibraryCalculator.deploy();
+
+    console.log({
+      libraryCalculator: await libraryCalculator.getAddress(),
+    });
+  };
+
   const deploySimpleStorage = async () => {
     // deploy simple storage
     const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
@@ -51,10 +61,39 @@ async function main() {
     });
   };
 
+  const deployInheritanceExample = async () => {
+    // deploy inheritance example
+    const Dog = await ethers.getContractFactory("Dog");
+    const dog = await Dog.deploy();
+
+    console.log({
+      dog: await dog.getAddress(),
+    });
+
+  };
+
+  const deployPolymorphismExample = async () => {
+    // deploy polymorphism example
+    const Dog = await ethers.getContractFactory("PolymorphismDog");
+    const dog = await Dog.deploy();
+
+    const Cat = await ethers.getContractFactory("PolymorphismCat");
+    const cat = await Cat.deploy();
+
+    console.log({
+      dog: await dog.getAddress(),
+      cat: await cat.getAddress(),
+    })
+  };
+
   // await deployLock();
   // await deployFundamentals();
   // await deployCalculator();
-  await deploySimpleStorage();
+  // await deploySimpleStorage();
+  // await deployInheritanceExample();
+  // await deployPolymorphismExample();
+  await deployLibraryCalculator();
+
 }
 
 main()
