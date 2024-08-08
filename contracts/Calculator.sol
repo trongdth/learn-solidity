@@ -2,6 +2,7 @@
 pragma solidity 0.8.24;
 
 import {Math} from "./library/Math.sol";
+import {ICalculator} from "./interface/ICalculator.sol";
 
 contract Calculator {
     uint256 private result = 0;
@@ -68,5 +69,29 @@ contract LibraryCalculator {
 
     function substract(uint a, uint b) public pure returns (uint) {
         return a.sub(b);
+    }
+}
+
+contract InterfaceCalculator is ICalculator {
+    function add(uint a, uint b) external pure returns (uint) {
+        return a + b;
+    }
+
+    function sub(uint a, uint b) external pure returns (uint) {
+        return a - b;
+    }
+}
+
+abstract contract AbstractCalculator {
+    function add(uint a, uint b) public pure returns (uint) {
+        return a + b;
+    }
+
+    function sub(uint a, uint b) public pure virtual returns (uint);
+}
+
+contract ACalculator is AbstractCalculator {
+    function sub(uint a, uint b) public pure override returns (uint) {
+        return a - b;
     }
 }

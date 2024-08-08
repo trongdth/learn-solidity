@@ -51,6 +51,16 @@ async function main() {
     });
   };
 
+  const deployInterfaceCalculator = async () => {
+    // deploy Interface Calculator
+    const InterfaceCalculator = await ethers.getContractFactory("InterfaceCalculator");
+    const interfaceCalculator = await InterfaceCalculator.deploy();
+
+    console.log({
+      interfaceCalculator: await interfaceCalculator.getAddress(),
+    });
+  };
+
   const deploySimpleStorage = async () => {
     // deploy simple storage
     const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
@@ -86,14 +96,26 @@ async function main() {
     })
   };
 
+  const deployErrorHandling = async () => {
+    // deploy error handling
+    const ErrorHandling = await ethers.getContractFactory("ErrorHandling");
+    const errorHandling = await ErrorHandling.deploy();
+
+    console.log({
+      errorHandling: await errorHandling.getAddress(),
+    });
+
+  };
+
   // await deployLock();
   // await deployFundamentals();
   // await deployCalculator();
   // await deploySimpleStorage();
   // await deployInheritanceExample();
   // await deployPolymorphismExample();
-  await deployLibraryCalculator();
-
+  // await deployLibraryCalculator();
+  await deployInterfaceCalculator();
+  // await deployErrorHandling();
 }
 
 main()
