@@ -107,6 +107,16 @@ async function main() {
 
   };
 
+  const deployStringOperations = async () => {
+    // deploy String Operations
+    const StringOperations = await ethers.getContractFactory("StringOperations");
+    const stringOperations = await StringOperations.deploy();
+
+    console.log({
+      stringOperations: await stringOperations.getAddress(),
+    });
+  };
+
   // await deployLock();
   // await deployFundamentals();
   // await deployCalculator();
@@ -114,8 +124,9 @@ async function main() {
   // await deployInheritanceExample();
   // await deployPolymorphismExample();
   // await deployLibraryCalculator();
-  await deployInterfaceCalculator();
+  // await deployInterfaceCalculator();
   // await deployErrorHandling();
+  await deployStringOperations();
 }
 
 main()
