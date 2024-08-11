@@ -90,7 +90,7 @@ abstract contract AbstractCalculator {
     function sub(uint a, uint b) public pure virtual returns (uint);
 }
 
-contract ACalculator is AbstractCalculator {
+contract AbstractInheritanceCalculator is AbstractCalculator {
     function sub(uint a, uint b) public pure override returns (uint) {
         return a - b;
     }
