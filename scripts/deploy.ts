@@ -61,6 +61,16 @@ async function main() {
     });
   };
 
+  const deployAbstractInheritanceCalculator = async () => {
+    // deploy Abstract Inheritance Calculator
+    const AbstractInheritanceCalculator = await ethers.getContractFactory("AbstractInheritanceCalculator");
+    const abstractInheritanceCalculator = await AbstractInheritanceCalculator.deploy();
+
+    console.log({
+      abstractInheritanceCalculator: await abstractInheritanceCalculator.getAddress(),
+    });
+  };
+
   const deploySimpleStorage = async () => {
     // deploy simple storage
     const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
@@ -126,7 +136,8 @@ async function main() {
   // await deployLibraryCalculator();
   // await deployInterfaceCalculator();
   // await deployErrorHandling();
-  await deployStringOperations();
+  // await deployStringOperations();
+  await deployAbstractInheritanceCalculator();
 }
 
 main()
