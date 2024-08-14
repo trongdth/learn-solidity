@@ -5,6 +5,7 @@ contract VulnerableReentrancy {
     mapping(address => uint) public balances;
 
     function deposit() public payable {
+        require(msg.value >= 0.01 ether, "not enough Metis");
         balances[msg.sender] += msg.value;
     }
 

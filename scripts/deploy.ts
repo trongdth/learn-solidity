@@ -127,6 +127,23 @@ async function main() {
     });
   };
 
+
+  const deployVulnerableReentrancy = async () => {
+    // deploy VulerableReentrancy
+    const VulnerableReentrancy = await ethers.getContractFactory("VulnerableReentrancy");
+    const vulnerableReentrancy = await VulnerableReentrancy.deploy();
+
+    // deploy ReentrancyAttacker
+    const ReentrancyAttacker = await ethers.getContractFactory("ReentrancyAttacker");
+    const reentrancyAttacker = await ReentrancyAttacker.deploy(await vulnerableReentrancy.getAddress());
+
+    console.log({
+      vulnerableReentrancy: await vulnerableReentrancy.getAddress(),
+      reentrancyAttacker: await reentrancyAttacker.getAddress(),
+    });
+  };
+
+
   // await deployLock();
   // await deployFundamentals();
   // await deployCalculator();
@@ -137,7 +154,8 @@ async function main() {
   // await deployInterfaceCalculator();
   // await deployErrorHandling();
   // await deployStringOperations();
-  await deployAbstractInheritanceCalculator();
+  // await deployAbstractInheritanceCalculator();
+  await deployVulnerableReentrancy();
 }
 
 main()
