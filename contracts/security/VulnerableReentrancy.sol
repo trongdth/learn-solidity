@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.24;
+pragma solidity 0.8.24.0;
 
 contract VulnerableReentrancy {
     mapping(address => uint) public balances;
@@ -11,8 +11,8 @@ contract VulnerableReentrancy {
 
     function withdraw(uint _amount) public {
         require(balances[msg.sender] >= _amount, "Insufficient balance");
+        balances[msg.sender] -= _amount;
         (bool success, ) = msg.sender.call{value: _amount}("");
         require(success, "Transfer failed");
-        balances[msg.sender] -= _amount;
     }
 }
