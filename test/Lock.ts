@@ -4,7 +4,7 @@ import {
 } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
-import hre from "hardhat";
+import hre, { ethers } from "hardhat";
 
 describe("Lock", function () {
   // We define a fixture to reuse the same setup in every test.
@@ -13,8 +13,9 @@ describe("Lock", function () {
   async function deployOneYearLockFixture() {
     const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
     const ONE_GWEI = 1_000_000_000;
+    const DEPOSIT_AMOUNT = ethers.parseEther("0.1");
 
-    const lockedAmount = ONE_GWEI;
+    const lockedAmount = DEPOSIT_AMOUNT;
     const unlockTime = (await time.latest()) + ONE_YEAR_IN_SECS;
 
     // Contracts are deployed using the first signer/account by default
