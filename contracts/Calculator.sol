@@ -34,6 +34,10 @@ contract BasicCalculator {
     function substract(uint256 a, uint256 b) public {
         result = a - b;
     }
+
+    function get() public view returns (uint256) {
+        return result;
+    }
 }
 
 contract AdvancedCalculator is BasicCalculator {
